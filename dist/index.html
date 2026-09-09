@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>FaidATech - Enterprise Automation & Digital Solutions</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#0B3B60',
+                        brandGreen: '#3C8A4E',
+                        brandLight: '#F4F8F5',
+                        brandDark: '#07253D',
+                        neonGreen: '#10B981',
+                        cyberBlue: '#3B82F6'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Noto Sans Ethiopic', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+  <script type="module" crossorigin src="/assets/index-DFWDmp7b.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-B5bSENnj.css">
+</head>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-100 bg-gray-50 dark:bg-gray-950 transition-colors duration-300 overflow-x-hidden">
+
+<!-- Top Utility Bar -->
+<div class="bg-brandDark text-white text-sm py-2 px-6 border-b border-white/10 relative z-20">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+        <div class="hidden md:flex items-center space-x-6">
+            <span><i class="fa-solid fa-location-dot text-brandGreen mr-2"></i><span id="top-loc">Adama, Ethiopia</span></span>
+            <span><i class="fa-solid fa-envelope text-brandGreen mr-2"></i>faidatech3@gmail.com</span>
+        </div>
+        
+        <div class="flex items-center space-x-4 ml-auto md:ml-0">
+            <button id="theme-toggle-btn" class="bg-white/10 hover:bg-white/20 text-white px-3 py-1 rounded-xl text-xs flex items-center gap-2 transition">
+                <i id="theme-icon" class="fa-solid fa-sun text-yellow-400"></i>
+                <span id="theme-text">Light</span>
+            </button>
+
+            <!-- Custom UI Language Dropdown -->
+            <select id="lang-select" class="bg-white/10 text-white border-none px-3 py-1 rounded-xl outline-none cursor-pointer text-xs">
+                <option value="en" class="text-black" selected>English</option>
+                <option value="am" class="text-black">አማርኛ</option>
+                <option value="om" class="text-black">Afaan Oromoo</option>
+                <option value="sw" class="text-black">Kiswahili</option>
+                <option value="fr" class="text-black">Français</option>
+                <option value="so" class="text-black">Soomaali</option>
+                <option value="ar" class="text-black">العربية</option>
+            </select>
+
+            <div id="google_translate_element"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden text-brandBlue dark:text-white focus:outline-none text-2xl p-2 mr-4">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Header Logo Container -->
+        <div class="relative h-12 flex items-center justify-center shrink-0 ltr:mr-auto rtl:ml-auto pt-1" dir="ltr">
+            <a href="#" class="relative flex items-center h-full overflow-visible">
+                <img src="/assets/logo-DwJaIDD1.webp" 
+                     alt="FaidATech Logo" 
+                     class="h-10 w-auto object-contain max-w-none scale-[1.9] origin-left rtl:origin-right transition-transform pointer-events-auto">
+            </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center space-x-5 text-sm font-medium text-gray-700 dark:text-gray-200">
+            <a href="#home" class="hover:text-brandGreen transition shrink-0">Home</a>
+            <a href="#announcements" class="hover:text-brandGreen transition shrink-0">Announcements</a>
+            <a href="#about" class="hover:text-brandGreen transition shrink-0">About Us</a>
+            <a href="#qr-services" class="hover:text-brandGreen transition shrink-0">QR Services</a>
+            <a href="#vision" class="hover:text-brandGreen transition shrink-0">Vision</a>
+            <a href="#partners" class="hover:text-brandGreen transition shrink-0">Partners</a>
+            <a href="#contact" class="hover:text-brandGreen transition shrink-0">Contact</a>
+        </nav>
+
+    </div>
+</header>
+
+<!-- Hero Section with 3D Rotating Globe -->
+<section id="home" class="relative py-16 bg-[#070F18] overflow-hidden min-h-[85vh] flex items-center">
+    
+    <!-- 3D Globe Canvas Container (የቀደመችው መሬት የምትሳልበት ቦታ) -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden w-full h-full">
+        <div id="globe-glow" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] bg-cyan-500/10 rounded-full blur-[130px]"></div>
+        <canvas id="globe3dCanvas" class="absolute inset-0 w-full h-full block opacity-90"></canvas>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
+        
+        <!-- Left Column: Title and Subtitle -->
+        <div class="space-y-6 text-left">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono tracking-widest uppercase shadow-[0_0_15px_rgba(0,242,254,0.2)]">
+                // ACCELERATING DIGITAL TRANSFORMATION
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                Modern Tech <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
+                    Solutions for Next-Gen Enterprise
+                </span>
+            </h1>
+
+            <p class="text-gray-400 text-base md:text-lg max-w-xl leading-relaxed">
+                Custom software systems, QR-based attendance tracking, school management, and gym operational solutions built to streamline your organization.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                <a href="#qr-services" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-3.5 px-8 rounded-xl shadow-[0_0_20px_rgba(0,242,254,0.4)] text-center transition duration-300">
+                    Explore Services
+                </a>
+                <a href="#contact" class="border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-bold py-3.5 px-8 rounded-xl text-center transition duration-300 shadow-md">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Column: Interactive Phone Mockup -->
+        <div class="flex justify-center items-center lg:justify-end">
+            <div class="relative w-[300px] h-[580px] rounded-[48px] p-3 bg-gradient-to-b from-slate-700 via-slate-900 to-black border-2 border-slate-600/50 shadow-[0_0_50px_rgba(0,242,254,0.25)]">
+                <div class="relative w-full h-full bg-[#090d16] rounded-[38px] overflow-hidden flex flex-col justify-between p-4 border border-slate-800">
+                    
+                    <!-- Phone Top Header with Logo -->
+                    <div class="relative z-10 flex justify-between items-center pt-1 pb-2 border-b border-slate-800/60 px-1">
+                        <img src="/assets/logo-DwJaIDD1.webp" alt="FaidATech Logo" class="h-6 w-auto object-contain">
+                        <div class="w-2.5 h-2.5 rounded-full bg-cyan-500/40 border border-cyan-400"></div>
+                    </div>
+
+                    <!-- Phone Screen Content Display -->
+                    <div class="relative w-full h-[430px] my-auto rounded-2xl overflow-hidden border border-slate-800 bg-black flex items-center justify-center">
+                        <img src="/assets/023-B6pjtnTJ.webp" alt="FaidATech Demo" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Phone Bottom Navigation Bar -->
+                    <div class="glass-panel p-2.5 rounded-2xl flex justify-around items-center relative z-10">
+                        <div class="w-4 h-4 rounded-full bg-cyan-400 shadow-[0_0_10px_#00f2fe]"></div>
+                        <div class="w-4 h-4 rounded-full bg-slate-700"></div>
+                        <div class="w-4 h-4 rounded-full bg-slate-700"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 3D Globe Script Connection (የነበረው ጃቫስክሪፕት ፋይል ማያያዣ) -->
+<script src="assets/js/scene3d.js"></script>
+
+<!-- ================================================================= -->
+<!-- OFFICIAL ANNOUNCEMENTS SECTION (TELEGRAM SYNCED & SCROLLABLE)     -->
+<!-- ================================================================= -->
+<section id="announcements" class="py-16 bg-[#0B1726] text-white relative border-y border-white/10 select-none">
+    <div class="max-w-7xl mx-auto px-6">
+        
+        <!-- Header -->
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+            <div>
+                <span class="inline-flex items-center gap-2 bg-[#4A8B57]/20 text-[#5cb06d] border border-[#4A8B57]/40 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest mb-3">
+                    <span class="w-2 h-2 rounded-full bg-[#5cb06d] animate-ping"></span>
+                    // LIVE TELEGRAM UPDATES
+                </span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">
+                    Official Announcements & News
+                </h2>
+                <p class="text-gray-400 text-xs sm:text-sm mt-1">Real-time updates directly synced from our official Telegram channel.</p>
+            </div>
+            
+            <a href="https://t.me/FaidAtech0" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-[#5cb06d] hover:text-white transition-all bg-white/5 hover:bg-white/10 px-5 py-3 rounded-xl border border-white/10 w-fit shadow-lg">
+                <i class="fa-brands fa-telegram text-lg text-[#3b82f6]"></i>
+                <span>Open @FaidAtech0</span>
+                <span>&rarr;</span>
+            </a>
+        </div>
+
+        <!-- Scrollable Telegram Feed Container -->
+        <div class="flex overflow-x-auto gap-6 pb-6 snap-x scroll-smooth custom-scrollbar">
+            
+            <!-- Card 1 (Post #2) -->
+            <div class="min-w-[300px] sm:min-w-[380px] max-w-[400px] bg-[#070F18] rounded-3xl border border-white/10 p-3 snap-center flex-shrink-0 shadow-2xl flex justify-center items-center min-h-[350px]">
+                <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                        data-telegram-post="FaidAtech0/3" 
+                        data-width="100%" 
+                        data-dark="1">
+                </script>
+            </div>
+
+            <!-- Card 2 (Post #3) -->
+            <div class="min-w-[300px] sm:min-w-[380px] max-w-[400px] bg-[#070F18] rounded-3xl border border-white/10 p-3 snap-center flex-shrink-0 shadow-2xl flex justify-center items-center min-h-[350px]">
+                <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                        data-telegram-post="FaidAtech0/4" 
+                        data-width="100%" 
+                        data-dark="1">
+                </script>
+            </div>
+
+         <!-- Card 3 (Post #4 - ተጨማሪ ፖስት ሲኖርህ መጠቀም ትችላለህ) -->
+            <!-- 
+            <div class="min-w-[300px] sm:min-w-[380px] max-w-[400px] bg-[#070F18] rounded-3xl border border-white/10 p-3 snap-center flex-shrink-0 shadow-2xl flex justify-center items-center min-h-[350px]">
+                <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                        data-telegram-post="FaidAtech0/4" 
+                        data-width="100%" 
+                        data-dark="1">
+                </script>
+            </div>
+            -->
+
+        </div>
+        
+    </div>
+</section>
+
+<!-- የScrollbar ስታይል (በ style.css ውስጥ ወይም በ index.html <style> ታግ ውስጥ መጨመር ትችላለህ) -->
+<style>
+    .custom-scrollbar::-webkit-scrollbar {
+        height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #4A8B57;
+        border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #5cb06d;
+    }
+</style>
+<!-- Metrics & Ecosystem Core Highlights -->
+<section id="about" class="border-y border-gray-200 dark:border-white/10 bg-white dark:bg-gray-900 py-10 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <!-- Highlight 1: Ready Systems -->
+        <div class="p-3">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-brandGreen tracking-tight">Production Ready</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium mt-1">Gym & School Systems</p>
+        </div>
+        
+        <!-- Highlight 2: Offline Capabilities -->
+        <div class="p-3">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-brandGreen tracking-tight">Offline-First</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium mt-1">Works Without Internet</p>
+        </div>
+        
+        <!-- Highlight 3: Agent Commission Model -->
+        <div class="p-3">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-brandGreen tracking-tight">Open Network</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium mt-1">Agent & Dev Opportunities</p>
+        </div>
+        
+        <!-- Highlight 4: HQ Location -->
+        <div class="p-3">
+            <h3 class="text-xl sm:text-2xl font-extrabold text-brandGreen tracking-tight">Adama, ETHIOPIA</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400 font-medium mt-1">Tech Development Hub</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-white dark:bg-gray-900 relative">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+        <span id="about-tag" class="text-brandGreen font-bold text-sm uppercase tracking-widest">// WHY FAIDATECH?</span>
+        <h2 id="about-title" class="text-3xl sm:text-4xl font-extrabold text-brandBlue dark:text-white mt-2 mb-12">Built with Innovation & Excellence</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="tilt-card p-8 rounded-3xl bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-700 text-left shadow-lg">
+                <div class="w-14 h-14 bg-brandBlue text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+                <h3 id="ab1-h" class="text-xl font-bold text-brandBlue dark:text-white mb-3">Fast & Reliable</h3>
+                <p id="ab1-p" class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">High-performance systems designed to streamline daily operations seamlessly.</p>
+            </div>
+
+            <div class="tilt-card p-8 rounded-3xl bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-700 text-left shadow-lg">
+                <div class="w-14 h-14 bg-brandGreen text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <h3 id="ab2-h" class="text-xl font-bold text-brandBlue dark:text-white mb-3">Robust Security</h3>
+                <p id="ab2-p" class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Enterprise-grade architecture protecting your institutional data safely.</p>
+            </div>
+
+            <div class="tilt-card p-8 rounded-3xl bg-gray-50 dark:bg-gray-800/60 border border-gray-100 dark:border-gray-700 text-left shadow-lg">
+                <div class="w-14 h-14 bg-brandBlue text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 id="ab3-h" class="text-xl font-bold text-brandBlue dark:text-white mb-3">Local Support</h3>
+                <p id="ab3-p" class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">Dedicated regional technical team in Adama providing hands-on support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- REDESIGNED QR ECOSYSTEM SHOWCASE (LOCAL IMAGES FORMAT)           -->
+<!-- ================================================================= -->
+<section id="qr-services" class="py-20 bg-brandDark text-white relative border-t border-white/10 select-none"></section>    
+    <!-- Section Header -->
+    <div class="max-w-7xl mx-auto px-6 mb-16 text-center">
+        <span id="serv-tag" class="text-brandGreen font-bold text-sm uppercase tracking-widest">// NEXT-GEN QR AUTOMATION</span>
+        <h2 id="serv-title" class="text-3xl sm:text-5xl font-extrabold mt-3 tracking-tight">
+            How Dynamic QR Codes Simplify Operations
+        </h2>
+        <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto mt-4 leading-relaxed">
+            From individual creators to enterprise businesses and public government institutions—our seamless QR architecture eliminates paperwork and automates daily workflows.
+        </p>
+    </div>
+
+    <!-- 4-Column Feature Grid (Your Color & Glass-Card Style) -->
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <!-- CARD 1: How It Works / Mechanics -->
+        <div class="tilt-card glass-card rounded-3xl border border-white/10 hover:border-brandGreen transition-all duration-300 overflow-hidden group flex flex-col justify-between">
+            <div class="relative h-44 overflow-hidden">
+                <!-- Local Image 1 -->
+                <img src="/assets/qr-scan-DLIpertJ.jpg" alt="Instant QR Scan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+                <div class="absolute inset-0 bg-gradient-to-t from-brandDark via-transparent to-transparent"></div>
+                <div class="absolute top-4 left-4 bg-brandDark/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 text-brandGreen">
+                    <i class="fa-solid fa-qrcode text-2xl"></i>
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-bold text-brandGreen uppercase tracking-wider">Step-by-Step Flow</span>
+                    <h3 class="text-xl font-bold mt-1 mb-2 group-hover:text-brandGreen transition-colors">How You Use It</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Users simply point their camera or scanner at the dynamic QR card. Instant database query validates access, triggers actions, or records time within milliseconds.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/10 text-xs text-brandGreen font-semibold flex items-center justify-between">
+                    <span>Zero App Download Needed</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 2: Individuals & Small Business -->
+        <div class="tilt-card glass-card rounded-3xl border border-white/10 hover:border-brandGreen transition-all duration-300 overflow-hidden group flex flex-col justify-between">
+            <div class="relative h-44 overflow-hidden">
+                <!-- Local Image 2 -->
+                <img src="/assets/merchant-qr-DvXP1EE2.jpg" alt="Retail & Merchant QR" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+                <div class="absolute inset-0 bg-gradient-to-t from-brandDark via-transparent to-transparent"></div>
+                <div class="absolute top-4 left-4 bg-brandDark/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 text-brandGreen">
+                    <i class="fa-solid fa-store text-2xl"></i>
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-bold text-brandGreen uppercase tracking-wider">Individuals & Cafes</span>
+                    <h3 class="text-xl font-bold mt-1 mb-2 group-hover:text-brandGreen transition-colors">Personal & Merchant Use</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Streamline Wi-Fi access, digital menus, personal vCards, and fast counter payments for shops, restaurants, and freelance service providers.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/10 text-xs text-brandGreen font-semibold flex items-center justify-between">
+                    <span>Instant Customer Onboarding</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 3: Private Enterprises & Schools -->
+        <div class="tilt-card glass-card rounded-3xl border border-white/10 hover:border-brandGreen transition-all duration-300 overflow-hidden group flex flex-col justify-between">
+            <div class="relative h-44 overflow-hidden">
+                <!-- Local Image 3 -->
+                <img src="/assets/school-gym-attendance-CfNHbO4F.jpg" alt="Smart Attendance" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+                <div class="absolute inset-0 bg-gradient-to-t from-brandDark via-transparent to-transparent"></div>
+                <div class="absolute top-4 left-4 bg-brandDark/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 text-brandGreen">
+                    <i class="fa-solid fa-id-card text-2xl"></i>
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-bold text-brandGreen uppercase tracking-wider">Schools & Gyms</span>
+                    <h3 class="text-xl font-bold mt-1 mb-2 group-hover:text-brandGreen transition-colors">Enterprise Automation</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Smart PVC student IDs, Automated staff check-ins, automated daily SMS attendance logs to parents, and subscription access control.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/10 text-xs text-brandGreen font-semibold flex items-center justify-between">
+                    <span>Live Cloud Sync & SMS Alerts</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- CARD 4: Government & Public Sector -->
+        <div class="tilt-card glass-card rounded-3xl border border-white/10 hover:border-brandGreen transition-all duration-300 overflow-hidden group flex flex-col justify-between">
+            <div class="relative h-44 overflow-hidden">
+                <!-- Local Image 4 -->
+                <img src="/assets/government-sec-bdl4KLUN.jpg" alt="Government Infrastructure" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 opacity-60">
+                <div class="absolute inset-0 bg-gradient-to-t from-brandDark via-transparent to-transparent"></div>
+                <div class="absolute top-4 left-4 bg-brandDark/80 backdrop-blur-md p-3 rounded-2xl border border-white/10 text-brandGreen">
+                    <i class="fa-solid fa-building-columns text-2xl"></i>
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <span class="text-xs font-bold text-brandGreen uppercase tracking-wider">Public Services</span>
+                    <h3 class="text-xl font-bold mt-1 mb-2 group-hover:text-brandGreen transition-colors">Government & Institutions</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        High-security document verification, public corridor access tracking, digital civil registry lookups, and unified service queueing systems.
+                    </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/10 text-xs text-brandGreen font-semibold flex items-center justify-between">
+                    <span>High-Security Verification</span>
+                    <span>&rarr;</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- START: Pan-African Heritage 3D Interactive Carousel (30 Images)   -->
+<!-- ================================================================= -->
+<section id="vision" class="py-24 bg-gradient-to-b from-brandDark via-gray-950 to-gray-900 text-white relative overflow-hidden"></section>    
+    <div class="absolute inset-0 opacity-5 pointer-events-none bg-[radial-gradient(#10B981_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-8">
+            <span class="inline-block bg-emerald-500/10 text-brandGreen border border-brandGreen/30 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest mb-4">
+                // African Heritage & Digital Transformation
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4 leading-tight">
+                From Great History to Digital Renaissance: <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500">Hope for Millions</span>
+            </h2>
+            <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                Scroll or drag to explore our vision. Filter by topic or click any card for full-screen view.
+            </p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap justify-center items-center gap-2 sm:gap-3 mb-10">
+            <button class="filter-btn active bg-brandGreen text-black font-bold text-xs sm:text-sm px-5 py-2 rounded-full border border-brandGreen transition-all shadow-lg" data-category="all">
+                All
+            </button>
+            <button class="filter-btn bg-white/5 hover:bg-white/10 text-gray-300 font-medium text-xs sm:text-sm px-5 py-2 rounded-full border border-white/10 transition-all" data-category="heritage">
+                Heritage & Culture
+            </button>
+            <button class="filter-btn bg-white/5 hover:bg-white/10 text-gray-300 font-medium text-xs sm:text-sm px-5 py-2 rounded-full border border-white/10 transition-all" data-category="tech">
+                Smart Tech & Systems
+            </button>
+            <button class="filter-btn bg-white/5 hover:bg-white/10 text-gray-300 font-medium text-xs sm:text-sm px-5 py-2 rounded-full border border-white/10 transition-all" data-category="education">
+                Education & Youth
+            </button>
+        </div>
+
+        <!-- 3D Circular Carousel Container -->
+        <div id="carousel-viewport" class="relative w-full h-[450px] sm:h-[550px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none">
+            <div id="carousel-track" class="relative w-full h-full flex items-center justify-center">
+                
+                <!-- ==================== GROUP 1: HERITAGE & CULTURE (10 IMAGES) ==================== -->
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/001.jpg" data-caption="Architectural Heritage">
+                    <img src="
+                    images/001.jpg" alt="Architectural Heritage" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Architectural Heritage</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/002.jpg" data-caption="Monuments & Ancient Identity">
+                    <img src="/assets/002-CgR-BkeH.jpg" alt="Monuments" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Monuments & Ancient Identity</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/003.jpg" data-caption="Native Script Preservation">
+                    <img src="/assets/003-YR2aUtQG.jpg" alt="Native Script" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Native Script Preservation</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/004.jpg" data-caption="Cultural & Tech Synergy">
+                    <img src="/assets/004-B5BcFMhM.jpg" alt="Culture Synergy" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Cultural & Tech Synergy</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/005.jpg" data-caption="Traditional Arts Modernization">
+                    <img src="/assets/005-DGEY9iWR.jpg" alt="Traditional Arts" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Traditional Arts Modernization</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/006.jpg" data-caption="Historic Wall Art Archives">
+                    <img src="/assets/006-DROFUUi_.jpg" alt="Historic Wall Art" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Historic Wall Art Archives</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/007.jpg" data-caption="Geometric Heritage Patterns">
+                    <img src="/assets/007-b2GjQvaK.jpg" alt="Geometric Patterns" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Geometric Heritage Patterns</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/008.jpg" data-caption="Localized Calendar & Time">
+                    <img src="/assets/008-Bbg3zqBp.jpg" alt="Localized Time" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Localized Calendar & Time</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/009.jpg" data-caption="Pan-African Cultural Roots">
+                    <img src="/assets/009-DkO2KRag.jpg" alt="Cultural Roots" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Pan-African Cultural Roots</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="heritage" data-src="images/010.jpg" data-caption="Indigenous Craft Digitalization">
+                    <img src="/assets/010-CMo71UM4.jpg" alt="Indigenous Craft" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-amber-400">Indigenous Craft Digitalization</p>
+                    </div>
+                </div>
+
+                <!-- ==================== GROUP 2: SMART TECH & SYSTEMS (10 IMAGES) ==================== -->
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/011.jpg" data-caption="Regional Innovation Hubs">
+                    <img src="/assets/011-CWQ8UaLx.jpg" alt="Innovation Hubs" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Regional Innovation Hubs</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/012.jpg" data-caption="African Smart Cities">
+                    <img src="/assets/012-Kz2BE_uT.jpg" alt="Smart Cities" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">African Smart Cities</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/013.jpg" data-caption="Systemic & Social Logic">
+                    <img src="/assets/013-FevtdB_b.jpg" alt="Social Logic" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Systemic & Social Logic</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/014.png" data-caption="Digital ID Infrastructure">
+                    <img src="/assets/014-C2Lo4-XJ.png" alt="Digital ID" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Digital ID Infrastructure</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/015.jpg" data-caption="Pan-African Connectivity">
+                    <img src="/assets/015-CoVsUi5k.jpg" alt="Connectivity" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Pan-African Connectivity</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/016.jpg" data-caption="Unified Payment Ecosystem">
+                    <img src="/assets/016-rPf6W2BN.jpg" alt="Payment System" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Unified Payment Ecosystem</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/017.jpg" data-caption="Health & Drone Ecosystem">
+                    <img src="/assets/017-D88aHLOP.jpg" alt="Drone Health" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Health & Drone Ecosystem</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/018.jpg" data-caption="Enterprise Automation">
+                    <img src="/assets/018-DM6g1cs_.jpg" alt="Automation" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Enterprise Automation</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/019.jpg" data-caption="Commerce Modernization">
+                    <img src="/assets/019-BGv-gMLd.jpg" alt="Commerce" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Commerce Modernization</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="tech" data-src="images/020.png" data-caption="Offline-First Cloud Infrastructure">
+                    <img src="/assets/020-BBn-1YVt.png" alt="Offline First" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-cyan-400">Cloud Infrastructure</p>
+                    </div>
+                </div>
+
+                <!-- ==================== GROUP 3: EDUCATION & YOUTH (10 IMAGES) ==================== -->
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/021.jpg" data-caption="Youth Coding Renaissance">
+                    <img src="/assets/021-DkHIpODz.jpg" alt="Youth Coding" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Youth Coding Renaissance</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/022.jpg" data-caption="Smart Education Systems">
+                    <img src="/assets/022-V5Z2-nfv.jpg" alt="Smart Education" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Smart Education Systems</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/023.webp" data-caption="Digital Student ID & Attendance">
+                    <img src="/assets/023-B6pjtnTJ.webp" alt="Digital ID Student" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Digital Student ID & Attendance</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/024.jpg" data-caption="STEM Bootcamps & Mentorship">
+                    <img src="/assets/024-BGiNBDEB.jpg" alt="STEM Bootcamp" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">STEM Bootcamps & Mentorship</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/025.jpg" data-caption="Interactive Tech Classrooms">
+                    <img src="/assets/025-BQnd9_U3.jpg" alt="Interactive Class" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Interactive Tech Classrooms</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/026.jpg" data-caption="Next-Gen African Innovators">
+                    <img src="/assets/026-EN6_Ldc_.jpg" alt="Innovators" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Next-Gen African Innovators</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/027.png" data-caption="Robotics & Hardware Labs">
+                    <img src="/assets/027-DwrhKB3Y.png" alt="Robotics Lab" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Robotics & Hardware Labs</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/028.png" data-caption="Digital Library Networks">
+                    <img src="/assets/028-CvIwGXn_.png" alt="Digital Library" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Digital Library Networks</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/029.jpg" data-caption="E-Learning for Rural Schools">
+                    <img src="/assets/029-CzeQA-pm.jpg" alt="E-Learning" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">E-Learning for Rural Schools</p>
+                    </div>
+                </div>
+
+                <div class="carousel-card absolute w-48 h-64 sm:w-64 sm:h-80 rounded-2xl overflow-hidden bg-gray-800 border border-white/20 shadow-2xl transition-transform duration-300 ease-out cursor-pointer" data-category="education" data-src="images/030.webp" data-caption="Youth Leadership in AI & Tech">
+                    <img src="/assets/030-DZq9wl-2.webp" alt="Youth Leadership" class="w-full h-full object-cover pointer-events-none">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent p-4 flex items-end">
+                        <p class="text-xs sm:text-sm font-bold text-emerald-400">Youth Leadership in AI & Tech</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="flex justify-center items-center gap-6 mt-6">
+            <button id="prevBtn" class="w-12 h-12 rounded-full bg-white/10 hover:bg-brandGreen/20 border border-white/20 hover:border-brandGreen flex items-center justify-center text-white transition-all">
+                &#10094;
+            </button>
+            <button id="nextBtn" class="w-12 h-12 rounded-full bg-white/10 hover:bg-brandGreen/20 border border-white/20 hover:border-brandGreen flex items-center justify-center text-white transition-all">
+                &#10095;
+            </button>
+        </div>
+
+        <!-- Vision Statement Footer -->
+        <div class="mt-12 text-center bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-md">
+            <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Grounded in History, Leading the Future!</h3>
+            <section id="about"></section>
+            <p class="text-gray-400 text-sm max-w-2xl mx-auto">
+                Building reliable, high-speed, and culturally aligned digital infrastructure for growing enterprises, institutions, and communities across Africa.
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Full-Screen Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden items-center justify-center p-4">
+        <button id="closeModal" class="absolute top-6 right-6 text-white/70 hover:text-white text-4xl font-bold focus:outline-none transition-colors z-50">&times;</button>
+        
+        <button id="modalPrev" class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-brandGreen/30 border border-white/20 text-white text-2xl flex items-center justify-center transition-all z-50">
+            &#10094;
+        </button>
+
+        <div class="max-w-4xl max-h-[85vh] flex flex-col items-center px-12">
+            <img id="modalImg" src="" alt="Full Screen View" class="max-w-full max-h-[75vh] object-contain rounded-xl border border-white/20 shadow-2xl">
+            <p id="modalCaption" class="mt-4 text-emerald-400 font-semibold text-sm tracking-wide text-center"></p>
+        </div>
+
+        <button id="modalNext" class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-brandGreen/30 border border-white/20 text-white text-2xl flex items-center justify-center transition-all z-50">
+            &#10095;
+        </button>
+    </div>
+
+</section>
+
+<!-- Script -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const allCards = Array.from(document.querySelectorAll('.carousel-card'));
+        const viewport = document.getElementById('carousel-viewport');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        let activeCards = [...allCards];
+        let total = activeCards.length;
+        let angle = 0;
+        let isDragging = false;
+        let startX = 0;
+        let autoRotate = true;
+
+        const updateCarousel = () => {
+            if (total === 0) return;
+            const radius = window.innerWidth < 640 ? 240 : 420;
+            const step = (2 * Math.PI) / total;
+
+            activeCards.forEach((card, i) => {
+                const cardAngle = angle + i * step;
+                const x = Math.sin(cardAngle) * radius;
+                const z = Math.cos(cardAngle) * radius;
+                const scale = (z + radius) / (2 * radius) * 0.5 + 0.6;
+                const opacity = (z + radius) / (2 * radius) * 0.7 + 0.3;
+
+                card.style.display = 'block';
+                card.style.transform = `translate3d(${x}px, 0, ${z}px) scale(${scale})`;
+                card.style.zIndex = Math.round(z + radius);
+                card.style.opacity = opacity;
+
+                if (z > radius * 0.7) {
+                    card.classList.add('border-brandGreen', 'ring-2', 'ring-brandGreen/50');
+                } else {
+                    card.classList.remove('border-brandGreen', 'ring-2', 'ring-brandGreen/50');
+                }
+            });
+        };
+
+        setInterval(() => {
+            if (autoRotate && !isDragging && total > 0) {
+                angle -= 0.002;
+                updateCarousel();
+            }
+        }, 16);
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active', 'bg-brandGreen', 'text-black');
+                    b.classList.add('bg-white/5', 'text-gray-300');
+                });
+                btn.classList.add('active', 'bg-brandGreen', 'text-black');
+                btn.classList.remove('bg-white/5', 'text-gray-300');
+
+                const cat = btn.getAttribute('data-category');
+                allCards.forEach(c => c.style.display = 'none');
+                
+                if (cat === 'all') {
+                    activeCards = [...allCards];
+                } else {
+                    activeCards = allCards.filter(c => c.getAttribute('data-category') === cat);
+                }
+
+                total = activeCards.length;
+                angle = 0;
+                updateCarousel();
+            });
+        });
+
+        viewport.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            angle += e.deltaY * 0.0015;
+            updateCarousel();
+        }, { passive: false });
+
+        const startDrag = (x) => { isDragging = true; startX = x; autoRotate = false; };
+        const moveDrag = (x) => {
+            if (!isDragging) return;
+            angle += (x - startX) * 0.003;
+            startX = x;
+            updateCarousel();
+        };
+        const stopDrag = () => { isDragging = false; setTimeout(() => autoRotate = true, 3000); };
+
+        viewport.addEventListener('mousedown', (e) => startDrag(e.clientX));
+        window.addEventListener('mousemove', (e) => moveDrag(e.clientX));
+        window.addEventListener('mouseup', stopDrag);
+
+        viewport.addEventListener('touchstart', (e) => startDrag(e.touches[0].clientX));
+        window.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX));
+        window.addEventListener('touchend', stopDrag);
+
+        nextBtn.addEventListener('click', () => { angle -= (2 * Math.PI) / total; updateCarousel(); });
+        prevBtn.addEventListener('click', () => { angle += (2 * Math.PI) / total; updateCarousel(); });
+
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalCaption = document.getElementById('modalCaption');
+        const closeModal = document.getElementById('closeModal');
+        const modalPrev = document.getElementById('modalPrev');
+        const modalNext = document.getElementById('modalNext');
+
+        let currentModalIndex = 0;
+
+        const openModalAtIndex = (index) => {
+            if (activeCards.length === 0) return;
+            currentModalIndex = (index + activeCards.length) % activeCards.length;
+            const targetCard = activeCards[currentModalIndex];
+            modalImg.src = targetCard.getAttribute('data-src');
+            modalCaption.innerText = targetCard.getAttribute('data-caption');
+        };
+
+        allCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const idx = activeCards.indexOf(card);
+                if (idx !== -1) {
+                    openModalAtIndex(idx);
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        modalNext.addEventListener('click', () => openModalAtIndex(currentModalIndex + 1));
+        modalPrev.addEventListener('click', () => openModalAtIndex(currentModalIndex - 1));
+
+        const hideModal = () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeModal.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (modal.classList.contains('hidden')) return;
+            if (e.key === 'Escape') hideModal();
+            if (e.key === 'ArrowRight') openModalAtIndex(currentModalIndex + 1);
+            if (e.key === 'ArrowLeft') openModalAtIndex(currentModalIndex - 1);
+        });
+
+        updateCarousel();
+    });
+</script>
+
+<!-- ================================================================= -->
+<!-- END: Pan-African Heritage 3D Interactive Carousel (30 Images)     -->
+<!-- ================================================================= -->
+ 
+<!-- ================================================================= -->
+<!-- START: FaidATech Advanced Enterprise & Multi-System Platform      -->
+<!-- ================================================================= -->
+<section id="ecosystem" class="py-24 bg-gray-950 text-white relative border-t border-white/10 overflow-hidden select-none">
+    
+    <!-- Background Ambient Lighting -->
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div class="max-w-2xl">
+                <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest mb-4">
+                    // Next-Gen Enterprise Architecture
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                    Integrated Software <br>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+                        & Hardware Ecosystem
+                    </span>
+                </h2>
+            </div>
+            <p class="text-gray-400 text-sm sm:text-base max-w-md leading-relaxed">
+                Explore our main automation systems below. Click any card to view detailed modular features and industry applications.
+            </p>
+        </div>
+    </div>
+
+    <!-- Auto-Scrolling Horizontal Container -->
+    <div id="scrollContainer" class="w-full overflow-x-auto pb-12 pt-4 px-6 no-scrollbar cursor-pointer">
+        <div id="scrollContent" class="flex gap-6 w-max max-w-none">
+            
+            <!-- CARD 1: Universal Dynamic QR Ecosystem -->
+            <div onclick="openModal('modal1')" class="card-item w-[320px] sm:w-[400px] h-[480px] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-white/10 hover:border-emerald-500/50 transition-all duration-500 hover:-translate-y-2 shadow-2xl group bg-gray-900">
+                <img src="https://images.unsplash.com/photo-1595079672139-cee25a1b30f8?auto=format&fit=crop&w=800&q=80" alt="Universal QR" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-emerald-500/20 text-emerald-300 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full border border-emerald-500/30">
+                            Core Dynamic Platform
+                        </span>
+                        <span class="text-xs font-mono text-gray-300">01 / 05</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 backdrop-blur-md border border-emerald-500/40 flex items-center justify-center text-emerald-400 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h2M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                        Universal QR Suite
+                    </h3>
+                    <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                        Dynamic QR deployment for 10 distinct sectors including Tourism, Heritage Sites, Hotels, Healthcare, and Transit Hubs.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-semibold text-emerald-400">
+                    <span>View All 10 Industry QR Uses</span>
+                    <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </div>
+            </div>
+
+            <!-- CARD 2: Smart Inventory, Stock & POS System -->
+            <div onclick="openModal('modal2')" class="card-item w-[320px] sm:w-[400px] h-[480px] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-white/10 hover:border-blue-500/50 transition-all duration-500 hover:-translate-y-2 shadow-2xl group bg-gray-900">
+                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Stock Management" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-blue-500/20 text-blue-300 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full border border-blue-500/30">
+                            Enterprise ERP System
+                        </span>
+                        <span class="text-xs font-mono text-gray-300">02 / 05</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-blue-500/20 backdrop-blur-md border border-blue-500/40 flex items-center justify-center text-blue-400 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                        Smart Stock & Inventory POS
+                    </h3>
+                    <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                        Real-time warehouse tracking, low-stock alerts, automated barcode generation, and multi-branch Point of Sale management.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-semibold text-blue-400">
+                    <span>View Stock & POS Features</span>
+                    <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </div>
+            </div>
+
+            <!-- CARD 3: Smart School & PVC Identity Portal -->
+            <div onclick="openModal('modal3')" class="card-item w-[320px] sm:w-[400px] h-[480px] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-white/10 hover:border-cyan-500/50 transition-all duration-500 hover:-translate-y-2 shadow-2xl group bg-gray-900">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="Smart School" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-cyan-500/20 text-cyan-300 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full border border-cyan-500/30">
+                            EdTech Security
+                        </span>
+                        <span class="text-xs font-mono text-gray-300">03 / 05</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 backdrop-blur-md border border-cyan-500/40 flex items-center justify-center text-cyan-400 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0112 20.055a11.952 11.952 0 01-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+                        School Attendance & PVC Cards
+                    </h3>
+                    <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                        High-durability digital student ID creation, cloud record logging, and automated parent notifications upon entry scans.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-semibold text-cyan-400">
+                    <span>View Portal Details</span>
+                    <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </div>
+            </div>
+
+            <!-- CARD 4: Physical Branding Lightboxes -->
+            <div onclick="openModal('modal4')" class="card-item w-[320px] sm:w-[400px] h-[480px] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-white/10 hover:border-amber-500/50 transition-all duration-500 hover:-translate-y-2 shadow-2xl group bg-gray-900">
+                <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=80" alt="Lightbox Displays" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/80 to-transparent"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-amber-500/20 text-amber-300 backdrop-blur-md text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30">
+                            Hardware & Branding
+                        </span>
+                        <span class="text-xs font-mono text-gray-300">04 / 05</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 backdrop-blur-md border border-amber-500/40 flex items-center justify-center text-amber-400 mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-amber-400 transition-colors">
+                        Physical Stand Lightboxes
+                    </h3>
+                    <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                        Compliant freestanding mechanical displays and illuminated lightboxes replacing banned wall banners under urban standards.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-semibold text-amber-400">
+                    <span>View Display Specifications</span>
+                    <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </div>
+            </div>
+
+            <!-- CARD 5: Unified Payment & Banking Infrastructure -->
+            <div onclick="openModal('modal5')" class="card-item w-[320px] sm:w-[400px] h-[480px] rounded-3xl p-8 flex flex-col justify-between relative overflow-hidden border border-emerald-500/50 hover:border-emerald-400 transition-all duration-500 hover:-translate-y-2 shadow-2xl group bg-gray-900">
+                <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80" alt="FinTech Network" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" onerror="this.style.display='none'">
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/85 to-emerald-950/40"></div>
+
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="bg-gradient-to-r from-emerald-400 to-cyan-400 text-black text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                            Future Roadmap
+                        </span>
+                        <span class="text-xs font-mono text-emerald-300">05 / 05</span>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-400 text-black flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/30">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                        Unified Banking & Payment Layer
+                    </h3>
+                    <p class="text-gray-300 text-sm line-clamp-3 leading-relaxed">
+                        Interoperable QR gateway architecture connecting multiple commercial banks into a unified African digital payment network.
+                    </p>
+                </div>
+
+                <div class="relative z-10 pt-4 border-t border-white/20 flex items-center justify-between text-xs font-bold text-emerald-300">
+                    <span>View Strategic Vision</span>
+                    <span class="group-hover:translate-x-2 transition-transform">&rarr;</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- RESPONSIVE SCROLLABLE MODAL POPUP SYSTEM                          -->
+<!-- ================================================================= -->
+<div id="fullModal" class="fixed inset-0 z-50 bg-gray-950/80 backdrop-blur-md hidden items-center justify-center p-3 sm:p-6 overflow-hidden">
+    <div class="bg-gray-900 border border-white/10 rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col relative text-white shadow-2xl overflow-hidden my-auto">
+        
+        <!-- Fixed Header Bar -->
+        <div class="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-gray-900/90 backdrop-blur-md z-20">
+            <span id="modalBadge" class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                System Specification
+            </span>
+            <button onclick="closeModal()" class="w-8 h-8 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-gray-300 hover:text-white transition-colors">
+                &#x2715;
+            </button>
+        </div>
+
+        <!-- Scrollable Modal Body -->
+        <div id="modalContent" class="p-6 overflow-y-auto space-y-6 flex-1 text-gray-300">
+            <!-- Dynamic Content Injected Here via JavaScript -->
+        </div>
+
+        <!-- Fixed Footer Bar -->
+        <div class="p-4 border-t border-white/10 bg-gray-900/90 backdrop-blur-md flex justify-end z-20">
+            <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================================================================= -->
+<!-- JAVASCRIPT: DATA & INTERACTIVITY                                  -->
+<!-- ================================================================= -->
+<script>
+    // 1. HORIZONTAL AUTO-SCROLL CONTROLLER
+    const container = document.getElementById('scrollContainer');
+    const content = document.getElementById('scrollContent');
+    
+    // Duplicate inner content for infinite loop
+    content.innerHTML += content.innerHTML;
+
+    let scrollSpeed = 0.8;
+    let isHovered = false;
+
+    function autoScroll() {
+        if (!isHovered) {
+            container.scrollLeft += scrollSpeed;
+            if (container.scrollLeft >= content.scrollWidth / 2) {
+                container.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    }
+
+    container.addEventListener('mouseenter', () => isHovered = true);
+    container.addEventListener('mouseleave', () => isHovered = false);
+
+    autoScroll();
+
+    // 2. 10 UNIQUE SECTOR QR USE CASES WITH HIGH-RELIABILITY IMAGES
+    const qrSectors = [
+        { 
+            name: "Tourism & Heritage Sites", 
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvwT62_8PRg06VlPNTOID_GpUFtCtwHzSP0UNPUXK0Dg&s=10",
+            desc: "Multi-language audio guides, digital monument ticketing, historical info portals, and souvenir payments." 
+        },
+        { 
+            name: "Hotels & Luxury Resorts", 
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5CdVXQkuue3Qzr8iZxIvFV0QWgnE3kF3WXyiPtSfz9WfyN2Q2FZbyXJUR&s=10",
+            desc: "Contactless room service ordering, digital concierge requests, and instant invoice settlements." 
+        },
+        { 
+            name: "Restaurants & Cafes", 
+            img: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
+            desc: "Interactive multi-language food menus, table-side ordering, and direct Telebirr/Bank payment routing." 
+        },
+        { 
+            name: "Schools & Universities", 
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHgo2R3PyLuvmsBJ8GmDoOQ6OWclSqWJw5v1a39HRRHQ&s=10",
+            desc: "Tuition payment links, digital student ID identity validation, and automated attendance logging." 
+        },
+        { 
+            name: "Hospitals & Clinics", 
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9hI6M-FGJv8RYinfL0nAEkOvTy_sdzGT9G-y279TBWA&s=10",
+            desc: "Patient appointment registration, prescription detail lookup, and department payment stations." 
+        },
+        { 
+            name: "Gyms & Fitness Centers", 
+            img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=600&q=80",
+            desc: "Instant membership renewals, trainer schedule booking, and turnstile gate entry scans." 
+        },
+        { 
+            name: "Public Transit & Taxis", 
+            img: "https://images.unsplash.com/photo-1556122071-e404eaedb77f?auto=format&fit=crop&w=600&q=80",
+            desc: "Rapid passenger fare collection, driver verification credentials, and digital receipt generation." 
+        },
+        { 
+            name: "Malls & Retail Hubs", 
+            img: "https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=600&q=80",
+            desc: "Unified merchant checkout codes, interactive store directories, and instant discount vouchers." 
+        },
+        { 
+            name: "Corporate Towers", 
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaSse-KQ5BE-x-H_LRbht5yiQ1iwqP9FHNe1FwAES3owLjptfgN-K6mIrD&s=10",
+            desc: "Automated visitor registration tags, passwordless guest Smart-WiFi access, and elevator access." 
+        },
+        { 
+            name: "Event Arenas & Stadiums", 
+            img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTzHUguFhhcjgolF5XV9S6xjXh0vwS10wSQzfk1L55lw&s=10",
+            desc: "High-speed gate ticket verification, VIP access control, and real-time concert schedules." 
+        }
+    ];
+
+    // 3. MODAL DATA DICTIONARY
+    const modalData = {
+        modal1: {
+            title: "Universal Dynamic QR Ecosystem",
+            badge: "Multi-Sector Platform",
+            intro: "FaidATech's dynamic QR technology allows institutions to instantly update digital touchpoints without reprinting. Below are 10 key operational sectors powered by this architecture:",
+            customContent: `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    ${qrSectors.map((sector, index) => `
+                        <div class="bg-gray-800/80 border border-white/10 rounded-xl overflow-hidden flex flex-col hover:border-emerald-500/50 transition-colors relative">
+                            <div class="h-32 w-full overflow-hidden relative bg-gray-900">
+                                <img src="${sector.img}" class="w-full h-full object-cover" onerror="this.style.opacity='0.3'">
+                                <span class="absolute top-2 left-2 bg-black/80 backdrop-blur-md text-emerald-400 text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-500/30">
+                                    #${index + 1} ${sector.name === 'Tourism & Heritage Sites' ? '★ FEATURED' : ''}
+                                </span>
+                            </div>
+                            <div class="p-3 bg-gray-900/90 flex-1">
+                                <h4 class="text-sm font-bold text-white mb-1 flex items-center justify-between">
+                                    <span>${sector.name}</span>
+                                </h4>
+                                <p class="text-xs text-gray-300 leading-normal">${sector.desc}</p>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `
+        },
+        modal2: {
+            title: "Smart Inventory, Stock & POS Enterprise System",
+            badge: "ERP & Store Automation",
+            intro: "Comprehensive stock management built to eliminate inventory leakage, automate supplier reorders, and streamline retail sales counter operations.",
+            customContent: `
+                <div class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-gray-800/50 p-3 rounded-xl border border-white/5">
+                            <h5 class="text-blue-400 font-bold text-xs uppercase mb-1">Stock Level Tracking</h5>
+                            <p class="text-xs text-gray-300">Automated low-stock threshold notifications and batch expiration tracking.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-3 rounded-xl border border-white/5">
+                            <h5 class="text-blue-400 font-bold text-xs uppercase mb-1">Barcode & QR Scanning</h5>
+                            <p class="text-xs text-gray-300">Instant item lookup and automated SKU label printing for warehouse items.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-3 rounded-xl border border-white/5">
+                            <h5 class="text-blue-400 font-bold text-xs uppercase mb-1">Point of Sale (POS)</h5>
+                            <p class="text-xs text-gray-300">Fast digital checkout supporting receipt printing and multi-payment options.</p>
+                        </div>
+                        <div class="bg-gray-800/50 p-3 rounded-xl border border-white/5">
+                            <h5 class="text-blue-400 font-bold text-xs uppercase mb-1">Multi-Branch Analytics</h5>
+                            <p class="text-xs text-gray-300">Centralized sales dashboard comparing revenue and stock movement across store locations.</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        },
+        modal3: {
+            title: "Smart Attendance & PVC Identity Portal",
+            badge: "EdTech Security System",
+            intro: "Designed for modern schools and corporate facilities requiring high-durability verification and instant cloud attendance logging.",
+            customContent: `
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-center space-x-2">
+                        <span class="text-cyan-400">✓</span>
+                        <span>High-durability PVC cards with anti-tamper QR code integration.</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <span class="text-cyan-400">✓</span>
+                        <span>Automated attendance logging paired with Supabase database synchronization.</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                        <span class="text-cyan-400">✓</span>
+                        <span>SMS / Telegram notification alerts triggered upon arrival and departure.</span>
+                    </li>
+                </ul>
+            `
+        },
+        modal4: {
+            title: "Freestanding Illuminated Lightbox Displays",
+            badge: "Hardware Branding",
+            intro: "Compliant physical advertising structures constructed to align with municipal urban planning standards.",
+            customContent: `
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    Our dynamic illuminated units give merchants maximum high-street visibility while remaining fully compliant with city corridor guidelines. Each lightbox integrates high-contrast QR entry points for digital interaction.
+                </p>
+            `
+        },
+        modal5: {
+            title: "Unified Multi-Bank Digital Payment Network",
+            badge: "FinTech Vision",
+            intro: "An interoperable payment routing network built to unify digital commercial transactions across local and regional banking APIs.",
+            customContent: `
+                <p class="text-sm text-gray-300 leading-relaxed">
+                    A single unified QR infrastructure handling cross-platform settlements, mobile wallet transactions, and merchant payment processing through one interface.
+                </p>
+            `
+        }
+    };
+
+    // 4. MODAL CONTROLLER FUNCTIONS
+    function openModal(id) {
+        const data = modalData[id];
+        if (!data) return;
+
+        const modal = document.getElementById('fullModal');
+        const modalBadge = document.getElementById('modalBadge');
+        const modalContent = document.getElementById('modalContent');
+
+        modalBadge.innerText = data.badge;
+
+        modalContent.innerHTML = `
+            <h2 class="text-2xl font-extrabold text-white leading-tight">${data.title}</h2>
+            <p class="text-sm text-gray-300 leading-relaxed">${data.intro}</p>
+            ${data.customContent || ''}
+        `;
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('fullModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+</script>
+<!-- ================================================================= -->
+<!-- END: FaidATech Advanced Enterprise Architecture                   -->
+<!-- ================================================================= -->
+
+<!-- ================================================================= -->
+<!-- FAIDATECH AGENT & TALENT ECOSYSTEM HUB                            -->
+<!-- ================================================================= -->
+<section id="partners" class="py-24 bg-[#070F18] text-white relative border-t border-white/10 select-none overflow-hidden">   
+    <!-- Ambient Background Lighting -->
+    <div class="absolute top-1/3 left-0 w-96 h-96 bg-[#4A8B57]/15 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-[#003B6D]/30 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="inline-block bg-[#4A8B57]/20 text-[#5cb06d] border border-[#4A8B57]/40 text-xs font-bold px-4 py-2 rounded-full uppercase tracking-widest mb-4">
+                // Join the Movement
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+                Empowering Sales Agents & <br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-[#5cb06d] via-[#3b82f6] to-[#003B6D]">
+                    Freelance Developers
+                </span>
+            </h2>
+            <p class="text-gray-400 mt-4 text-sm sm:text-base leading-relaxed">
+                FaidATech is an open digital ecosystem. Whether you are a sales agent looking to earn high commissions or a developer ready to monetize your software, join our expanding network today.
+            </p>
+        </div>
+
+        <!-- Revenue Split Architecture Visual Banner -->
+        <div class="mb-16 bg-[#0B1726] border border-white/10 rounded-3xl p-6 sm:p-10 relative shadow-2xl">
+            <div class="text-center mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#5cb06d]">Transparent Marketplace Economics</span>
+                <h3 class="text-xl sm:text-3xl font-bold text-white mt-1">Freelance Software Revenue Distribution</h3>
+                <p class="text-xs sm:text-sm text-gray-400 mt-2">How every sale generated on the FaidATech platform is split seamlessly across partners.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <!-- 70% Developer -->
+                <div class="bg-[#070F18] p-6 rounded-2xl border border-[#4A8B57]/30 hover:border-[#4A8B57] transition-all group">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-[#5cb06d] mb-2 group-hover:scale-105 transition-transform">70%</div>
+                    <h4 class="text-lg font-bold text-white mb-1">Freelance Developer</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Earn the lion's share for your software assets. Publish once and earn 70% net payout on every enterprise license sold.
+                    </p>
+                </div>
+
+                <!-- 10% Agent -->
+                <div class="bg-[#070F18] p-6 rounded-2xl border border-amber-500/30 hover:border-amber-500 transition-all group">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-amber-400 mb-2 group-hover:scale-105 transition-transform">10%</div>
+                    <h4 class="text-lg font-bold text-white mb-1">Sales Agent</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Direct commission paid instantly to sales partners for converting client contracts across both FaidATech and freelancer products.
+                    </p>
+                </div>
+
+                <!-- 20% FaidATech -->
+                <div class="bg-[#070F18] p-6 rounded-2xl border border-[#003B6D] hover:border-[#3b82f6] transition-all group">
+                    <div class="text-4xl sm:text-5xl font-extrabold text-[#3b82f6] mb-2 group-hover:scale-105 transition-transform">20%</div>
+                    <h4 class="text-lg font-bold text-white mb-1">FaidATech Platform</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Reinvested directly into cloud infrastructure, client support, brand marketing, and active sales agent coordination.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Role Pathways -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <!-- Pathway 1: Sales Agents -->
+            <div class="bg-[#0B1726] p-8 rounded-3xl border border-white/10 hover:border-[#4A8B57] transition-all flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-[#4A8B57]/20 border border-[#4A8B57]/40 flex items-center justify-center text-[#5cb06d] mb-6">
+                        <i class="fa-solid fa-hand-holding-dollar text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-[#5cb06d] transition-colors">For Sales Agents & Marketers</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Turn your personal network into steady revenue by connecting businesses with market-ready automation software.
+                    </p>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#5cb06d] font-bold">✓</span>
+                            <span><strong>10% Fixed Commission:</strong> Earn 10% on every closed software license or subscription contract.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#5cb06d] font-bold">✓</span>
+                            <span><strong>Turnkey Software Portfolio:</strong> Pitch ready-to-use systems (Gym Management, School QR Attendance, Stock POS).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#5cb06d] font-bold">✓</span>
+                            <span><strong>Total Schedule Freedom:</strong> Work independently on your own hours without rigid corporate reporting.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pathway 2: Freelancers / Tech Talent -->
+            <div class="bg-[#0B1726] p-8 rounded-3xl border border-white/10 hover:border-[#3b82f6] transition-all flex flex-col justify-between group">
+                <div>
+                    <div class="w-12 h-12 rounded-2xl bg-[#3b82f6]/20 border border-[#3b82f6]/40 flex items-center justify-center text-[#3b82f6] mb-6">
+                        <i class="fa-solid fa-code text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-[#3b82f6] transition-colors">For Developers & Tech Talent</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Monetize your existing web applications or join contract development sprints within the FaidATech ecosystem.
+                    </p>
+                    <ul class="space-y-3 text-gray-300 text-sm">
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#3b82f6] font-bold">✓</span>
+                            <span><strong>Sell Your Software (70% Retained):</strong> List your completed software and let our agent network drive sales for you.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#3b82f6] font-bold">✓</span>
+                            <span><strong>Distributed Sales Force:</strong> Access an active sales team dedicated to marketing your system to businesses.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="text-[#3b82f6] font-bold">✓</span>
+                            <span><strong>Contract Sprints:</strong> Collaborate on custom modules, database architectures, and UI/UX contract tasks.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Application Form Container -->
+        <div class="max-w-3xl mx-auto bg-[#0B1726] border border-white/10 rounded-3xl p-8 sm:p-10 shadow-2xl">
+            <h3 class="text-xl sm:text-2xl font-bold text-center text-white mb-2">Partner Onboarding Form</h3>
+            <p class="text-gray-400 text-xs sm:text-sm text-center mb-8">Submit your credentials. Our core team will reach out via Telegram or phone within 24 hours.</p>
+
+            <form class="space-y-6">
+                <!-- Role Selection -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Primary Interest / Role *</label>
+                    <select class="w-full bg-[#070F18] border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#5cb06d] text-sm">
+                        <option value="agent">Sales Agent (Earn 10% Commission on Contracts)</option>
+                        <option value="freelancer">Freelance Developer (List System for 70% Revenue Share)</option>
+                        <option value="contractor">Contract Engineer / UI/UX Designer</option>
+                    </select>
+                </div>
+
+                <!-- Personal Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Full Name *</label>
+                        <input type="text" placeholder="John Doe" class="w-full bg-[#070F18] border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#5cb06d] text-sm" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Phone or Telegram Handle *</label>
+                        <input type="text" placeholder="+251 9... or @username" class="w-full bg-[#070F18] border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#5cb06d] text-sm" required>
+                    </div>
+                </div>
+
+                <!-- Additional Details -->
+                <div>
+                    <label class="block text-xs font-bold uppercase tracking-wider text-gray-300 mb-2">Background / Portfolio / Proposed Software</label>
+                    <textarea rows="3" placeholder="Agents: Describe your sales experience. Developers: Link your GitHub/Portfolio or describe the software you wish to list..." class="w-full bg-[#070F18] border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#5cb06d] text-sm"></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full bg-gradient-to-r from-[#4A8B57] to-[#003B6D] hover:from-[#5cb06d] hover:to-[#3b82f6] text-white font-bold py-4 rounded-xl text-sm uppercase tracking-widest transition-all shadow-lg hover:shadow-green-900/30">
+                    Submit Onboarding Application
+                </button>
+            </form>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================================================================= -->
+<!-- CONTACT SECTION                                                   -->
+<!-- ================================================================= -->
+<section id="contact" class="py-20 bg-gray-50 dark:bg-[#070F18] transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- Contact Info -->
+            <div>
+                <span id="cont-tag" class="text-emerald-600 dark:text-[#5cb06d] font-bold text-sm uppercase tracking-widest">// GET IN TOUCH</span>
+                <h2 id="cont-title" class="text-3xl sm:text-4xl font-extrabold text-gray-900 dark:text-white mt-2 mb-6">Let's Work Together</h2>
+                <p id="cont-desc" class="text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">Looking to digitize your institution or develop custom business software? Reach out to our main office in Adama.</p>
+
+                <div class="space-y-6 mb-10">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-[#5cb06d] rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 id="lbl-add" class="font-bold text-gray-900 dark:text-white">Location</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Adama, Ethiopia</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-[#5cb06d] rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 id="lbl-ph" class="font-bold text-gray-900 dark:text-white">Phone</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">+251 975498916 / +251 708544527</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-[#5cb06d] rounded-2xl flex items-center justify-center text-xl shadow-sm">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 id="lbl-em" class="font-bold text-gray-900 dark:text-white">Email</h4>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">faidatech3@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media Links Section -->
+                <div class="pt-6 border-t border-gray-200 dark:border-gray-800">
+                    <h4 class="text-sm font-bold uppercase text-gray-500 dark:text-gray-400 mb-4 tracking-wider">Connect With Us</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <!-- Telegram -->
+                        <a href="https://t.me/FaidAtech0" target="_blank" rel="noopener noreferrer" class="w-11 h-11 bg-white dark:bg-gray-800 text-[#0088cc] hover:bg-[#0088cc] hover:text-white rounded-2xl flex items-center justify-center text-lg transition-all duration-300 shadow-sm hover:scale-110 border border-gray-200 dark:border-gray-700">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        
+                        <!-- TikTok -->
+                        <a href="https://www.tiktok.com/@faidatech_0?_r=1&_t=ZS-99a6dahyQJ2" target="_blank" rel="noopener noreferrer" class="w-11 h-11 bg-white dark:bg-gray-800 text-gray-800 dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black rounded-2xl flex items-center justify-center text-lg transition-all duration-300 shadow-sm hover:scale-110 border border-gray-200 dark:border-gray-700">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        
+                        <!-- YouTube -->
+                        <a href="https://youtube.com/@faidatech-r5s?si=SlW00Ne0BkyqsaoO" target="_blank" rel="noopener noreferrer" class="w-11 h-11 bg-white dark:bg-gray-800 text-[#FF0000] hover:bg-[#FF0000] hover:text-white rounded-2xl flex items-center justify-center text-lg transition-all duration-300 shadow-sm hover:scale-110 border border-gray-200 dark:border-gray-700">
+                            <i class="fa-brands fa-youtube"></i>
+                        </a>
+                        
+                        <!-- Instagram -->
+                        <a href="https://www.instagram.com/faidatech2026?stkn=MTEzNm1jODBnM2d1aA==" target="_blank" rel="noopener noreferrer" class="w-11 h-11 bg-white dark:bg-gray-800 text-[#E4405F] hover:bg-[#E4405F] hover:text-white rounded-2xl flex items-center justify-center text-lg transition-all duration-300 shadow-sm hover:scale-110 border border-gray-200 dark:border-gray-700">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Contact Form -->
+            <div class="bg-white dark:bg-[#0B1726] p-8 rounded-3xl border border-gray-200 dark:border-white/10 shadow-xl">
+                <form class="space-y-4" id="contactForm">
+                    <div>
+                        <label id="lbl-name" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Your Name</label>
+                        <input type="text" id="user_name" placeholder="Enter your name" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#070F18] text-gray-900 dark:text-white focus:outline-none focus:border-[#5cb06d] transition" required>
+                    </div>
+                    <div>
+                        <label id="lbl-email" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Email Address</label>
+                        <input type="email" id="user_email" placeholder="example@mail.com" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#070F18] text-gray-900 dark:text-white focus:outline-none focus:border-[#5cb06d] transition" required>
+                    </div>
+                    <div>
+                        <label id="lbl-msg" class="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1">Message</label>
+                        <textarea id="user_message" rows="4" placeholder="Type your message here..." class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-[#070F18] text-gray-900 dark:text-white focus:outline-none focus:border-[#5cb06d] transition" required></textarea>
+                    </div>
+                    <button type="submit" id="btn-send" class="w-full bg-[#003B6D] hover:bg-[#00284d] text-white font-bold py-3.5 rounded-xl transition shadow-lg">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div> <!-- Contact Grid End -->
+    </div> <!-- Contact Container End -->
+</section>
+
+<!-- ================================================================= -->
+<!-- FOOTER (FULL WIDTH FIXED)                                         -->
+<!-- ================================================================= -->
+
+<!-- Footer Section -->
+<footer class="w-full bg-[#02060d] text-gray-400 py-10 border-t border-white/10 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center text-sm gap-4">
+        
+        <!-- Top: Disclaimer Text (English Only) -->
+        <p class="text-xs text-gray-400 leading-relaxed max-w-2xl border-b border-white/10 pb-4 w-full">
+            FaidATech is an independent software development enterprise and is not affiliated with the Ethiopian National Digital ID (Fayda ID) program.
+        </p>
+
+        <!-- Bottom: Copyright & Description -->
+        <div class="w-full flex flex-col md:flex-row justify-between items-center text-xs text-gray-400 gap-2">
+            <p>© 2026 FaidATech. All Rights Reserved.</p>
+            <p id="foot-desc">Enterprise Automation & Software Solutions</p>
+        </div>
+
+    </div>
+</footer>
+<div class="fixed bottom-6 right-6 z-50">
+    <button id="ai-assistant-btn" class="bg-gradient-to-r from-[#4A8B57] to-[#003B6D] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center gap-2 border-2 border-white/20">
+        <i class="fa-solid fa-robot text-2xl animate-bounce"></i>
+        <span class="text-xs font-bold hidden sm:inline">Ask FaidATech AI</span>
+    </button>
+</div>
+
+<!-- AI Chat & Voice Modal Container -->
+<div id="ai-chat-modal" class="hidden fixed bottom-24 right-6 w-96 max-w-[90vw] bg-[#070F18] border border-white/10 rounded-3xl shadow-2xl z-50 overflow-hidden flex flex-col h-[450px]">
+    <!-- Modal Header -->
+    <div class="bg-[#0B1726] p-4 border-b border-white/10 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-[#5cb06d] animate-ping"></div>
+            <h3 class="text-sm font-bold text-white">FaidATech Smart Assistant</h3>
+        </div>
+        <button id="close-ai-modal" class="text-gray-400 hover:text-white text-xl">&times;</button>
+    </div>
+
+    <!-- Chat Messages Area -->
+    <div id="chat-box" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs text-gray-300">
+        <div class="bg-white/5 p-3 rounded-2xl max-w-[85%] border border-white/5">
+            👋 Welcome to FaidATech! How can I assist you today? You can ask your questions via text or voice.
+        </div>
+    </div>
+
+    <!-- Input and Voice Control Area -->
+    <div class="p-3 border-t border-white/10 bg-[#0B1726] flex items-center gap-2">
+        <input type="text" id="user-input" placeholder="Type or speak..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#5cb06d]">
+        <button id="voice-btn" class="bg-[#4A8B57]/20 border border-[#4A8B57]/50 text-[#5cb06d] p-2.5 rounded-xl hover:bg-[#4A8B57] hover:text-white transition">
+            <i class="fa-solid fa-microphone"></i>
+        </button>
+        <button id="send-btn" class="bg-[#003B6D] text-white p-2.5 rounded-xl hover:bg-[#5cb06d] transition">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+const TELEGRAM_BOT_TOKEN = "8519890535:AAE2hEBd45kqwC-SDYuw3LTcftv5E7TVKBQ"; 
+const TELEGRAM_CHAT_ID = "7641347306";
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('user_name').value;
+    const email = document.getElementById('user_email').value;
+    const message = document.getElementById('user_message').value;
+    const submitBtn = document.getElementById('btn-send');
+
+    const text = `📩 *አዲስ መልእክት ደርሶዎታል!*\n\n👤 *ስም:* ${name}\n📧 *ኢሜይል:* ${email}\n💬 *መልእክት:* ${message}`;
+
+    submitBtn.innerText = "እየተላከ ነው...";
+    submitBtn.disabled = true;
+
+    fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: text,
+            parse_mode: 'Markdown'
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.ok) {
+            alert('መልእክትዎ በተሳካ ሁኔታ ተልኳል!');
+            document.getElementById('contactForm').reset();
+        } else {
+            alert('ስህተት ተፈጥሯል፣ እባክዎ እንደገና ይሞክሩ።');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('ኔትወርክ ስህተት ተፈጥሯል።');
+    })
+    .finally(() => {
+        submitBtn.innerText = "Send Message";
+        submitBtn.disabled = false;
+    });
+});
+</script>
+
+<!-- Modular Scripts -->
+<!-- Modular Scripts (Updated for Vite) -->
+</body>
+</html>

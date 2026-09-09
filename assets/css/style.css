@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap');
+
+:root {
+    /* Dark Theme (Default) */
+    --bg-main: #060913;
+    --bg-card: rgba(15, 23, 42, 0.7);
+    --bg-card-hover: rgba(30, 41, 59, 0.8);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --brand-cyan: #00f2fe;
+    --brand-blue: #4facfe;
+    --nav-bg: rgba(6, 9, 19, 0.85);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+html.light {
+    /* Light Theme */
+    --bg-main: #f8fafc;
+    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-card-hover: rgba(241, 245, 249, 1);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --border-color: rgba(0, 0, 0, 0.08);
+    --brand-cyan: #0284c7;
+    --brand-blue: #2563eb;
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+[dir="rtl"] { 
+    text-align: right; 
+}
+
+/* Glassmorphism Classes */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+}
+
+.light-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 3D Dynamic Card Hover Effects */
+.tilt-card {
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.tilt-card:hover {
+    transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+    box-shadow: 0 20px 40px rgba(60, 138, 78, 0.2);
+}
+
+.glow-effect:hover {
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
+}
+/* Laser Scan Animation */
+@keyframes laser-scan {
+  0% { top: 0%; opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { top: 100%; opacity: 0.2; }
+}
+
+.animate-laser {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #00f2fe, transparent);
+  box-shadow: 0 0 15px #00f2fe;
+  z-index: 20;
+  animation: laser-scan 3s ease-in-out infinite alternate;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+/* QR Grid Mockup */
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.qr-cell {
+  background-color: #334155;
+  border-radius: 4px;
+}
+.qr-cell.active {
+  background-color: #00f2fe;
+  box-shadow: 0 0 8px #00f2fe;
+}
+/* Background Obsidian Dark Theme */
+.africa-bg-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 70% 50%, #0a1128 0%, #050811 70%, #02040a 100%);
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Futuristic Cyber Grid Overlay */
+.cyber-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 60% 50%, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 60% 50%, black 40%, transparent 80%);
+}
+
+/* Glowing Neon Nodes */
+.glow-sphere {
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(0,242,254,0.18) 0%, rgba(16,185,129,0.08) 40%, transparent 70%);
+  filter: blur(60px);
+  border-radius: 50%;
+  animation: pulse-glow 6s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% { transform: translateY(-50%) scale(0.9); opacity: 0.6; }
+  100% { transform: translateY(-50%) scale(1.15); opacity: 1; }
+}
+
+@media (max-width: 1024px) {
+  .glow-sphere {
+    right: 50%;
+    transform: translate(50%, -50%);
+    width: 280px;
+    height: 280px;
+  }
+}
+/* --- Clean Mobile Sidebar & Overlay CSS (Left Side) --- */
+
+/* 1. Menu Overlay */
+#menuOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 999;
+}
+
+#menuOverlay.open {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 2. Mobile Sidebar (60% Width፣ ከግራ በኩል የሚገባ) */
+#mobileSidebar {
+    position: fixed;
+    top: 0;
+    left: 0 !important;             /* right: 0 የነበረው ወደ left: 0 ተቀይሯል */
+    right: auto !important;           /* left: auto የነበረው ወደ right: auto ተቀይሯል */
+    width: 60vw;
+    max-width: 300px;
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    box-shadow: 10px 0 25px rgba(0, 0, 0, 0.15); /* ጥላው ወደ ቀኝ እንዲያዘነብል ተደርጓል */
+    transform: translateX(-100%);    /* 100% የነበረው ወደ -100% ተቀይሯል (ወደ ግራ እንዲሸሽ) */
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+/* Dark Mode ድጋፍ */
+.dark #mobileSidebar {
+    background-color: #111827;
+}
+
+/* ሲከፈት (.open class ሲኖረው) */
+#mobileSidebar.open {
+    transform: translateX(0) !important;
+}
+
+/* 3. ዴስክቶፕ ላይ እንዲደበቅ */
+@media (min-width: 768px) {
+    #mobileSidebar {
+        transform: translateX(-100%) !important; /* -100% ተደርጓል */
+    }
+    #menuOverlay {
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+}
+/* 1. Hide Google Translate Banner and Iframe */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+iframe.goog-te-banner-frame,
+.VIpgJd-yDGeBb-Lg2fx-iVk1pd {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+}
+
+/* 2. Reset Body Position (Remove top whitespace) */
+body {
+    top: 0px !important;
+    position: static !important;
+}
+
+/* 3. Hide Translate Tooltips & Highlights */
+#goog-gt-tt, 
+.goog-te-balloon-frame,
+.VIpgJd-yDGeBb-yP9101 {
+    display: none !important;
+}
+
+.goog-text-highlight {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+/* Prevent Google Chrome native bar from shifting body down */
+html {
+    top: 0 !important;
+}
+
+body {
+    top: 0 !important;
+    position: static !important;
+}
+
+.skiptranslate {
+    display: none !important;
+}
