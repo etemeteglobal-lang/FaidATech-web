@@ -61,6 +61,7 @@ html.light {
 .glow-effect:hover {
     box-shadow: 0 0 25px rgba(16, 185, 129, 0.5);
 }
+
 /* Laser Scan Animation */
 @keyframes laser-scan {
   0% { top: 0%; opacity: 0.2; }
@@ -107,6 +108,7 @@ html.light {
   background-color: #00f2fe;
   box-shadow: 0 0 8px #00f2fe;
 }
+
 /* Background Obsidian Dark Theme */
 .africa-bg-container {
   position: absolute;
@@ -157,6 +159,7 @@ html.light {
     height: 280px;
   }
 }
+
 /* --- Clean Mobile Sidebar & Overlay CSS (Left Side) --- */
 
 /* 1. Menu Overlay */
@@ -176,19 +179,19 @@ html.light {
     visibility: visible !important;
 }
 
-/* 2. Mobile Sidebar (60% Width፣ ከግራ በኩል የሚገባ) */
+/* 2. Mobile Sidebar (60% Width) */
 #mobileSidebar {
     position: fixed;
     top: 0;
-    left: 0 !important;             /* right: 0 የነበረው ወደ left: 0 ተቀይሯል */
-    right: auto !important;           /* left: auto የነበረው ወደ right: auto ተቀይሯል */
+    left: 0 !important;
+    right: auto !important;
     width: 60vw;
     max-width: 300px;
     height: 100vh;
     background-color: #ffffff;
     padding: 1.5rem;
-    box-shadow: 10px 0 25px rgba(0, 0, 0, 0.15); /* ጥላው ወደ ቀኝ እንዲያዘነብል ተደርጓል */
-    transform: translateX(-100%);    /* 100% የነበረው ወደ -100% ተቀይሯል (ወደ ግራ እንዲሸሽ) */
+    box-shadow: 10px 0 25px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
 }
@@ -206,13 +209,40 @@ html.light {
 /* 3. ዴስክቶፕ ላይ እንዲደበቅ */
 @media (min-width: 768px) {
     #mobileSidebar {
-        transform: translateX(-100%) !important; /* -100% ተደርጓል */
+        transform: translateX(-100%) !important;
     }
     #menuOverlay {
         opacity: 0 !important;
         visibility: hidden !important;
     }
 }
+
+/* --- Mobile Dropdown Optimization --- */
+#lang-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 6px 28px 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    max-width: 130px;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2300f2fe%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px top 50%;
+    background-size: 10px auto;
+}
+
+#lang-select option {
+    background-color: #060913;
+    color: #f8fafc;
+    padding: 8px;
+}
+
 /* 1. Hide Google Translate Banner and Iframe */
 .goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
@@ -241,6 +271,7 @@ body {
     background-color: transparent !important;
     box-shadow: none !important;
 }
+
 /* Prevent Google Chrome native bar from shifting body down */
 html {
     top: 0 !important;
