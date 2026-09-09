@@ -1,10 +1,10 @@
-function googleTranslateElementInit() {
+window.googleTranslateElementInit = function() {
     new google.translate.TranslateElement({
         pageLanguage: 'en',
         includedLanguages: 'en,am,om,sw,fr,so,ar',
         autoDisplay: false
     }, 'google_translate_element');
-}
+};
 
 // Load Google Translate
 (function loadScript() {
