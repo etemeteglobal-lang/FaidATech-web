@@ -1,6 +1,5 @@
 // Configuration & Backend URL
-const BACKEND_URL = "http://localhost:3000/api/chat";
-
+const BACKEND_URL = "https://faidatech-backend.onrender.com/api/chat";
 // System Knowledge Base Configuration (Strategic & Protected Knowledge Base)
 const SYSTEM_PROMPT = `You are FaidATech AI, the strategic enterprise representative for FaidATech based in Adama, Ethiopia, expanding across Africa.
 

@@ -1636,5 +1636,28 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
 <script type="module" src="assets/js/lang.js"></script>
 <script type="module" src="assets/js/main.js"></script>
 <script type="module" src="assets/js/ai-agent.js"></script>
+<!-- Mobile Sidebar Overlay -->
+<div id="menuOverlay"></div>
+
+<!-- Mobile Sidebar (Left Side) -->
+<aside id="mobileSidebar">
+    <div class="flex justify-between items-center pb-4 mb-4 border-b border-gray-200 dark:border-gray-800">
+        <img src="images/logo.webp" alt="FaidATech Logo" class="h-8 w-auto">
+        <button id="closeSidebarBtn" class="text-gray-500 hover:text-red-500 text-xl p-2 focus:outline-none">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar Links -->
+    <nav class="flex flex-col space-y-4 font-medium text-gray-700 dark:text-gray-200">
+        <a href="#home" class="sidebar-link hover:text-brandGreen transition">Home</a>
+        <a href="#announcements" class="sidebar-link hover:text-brandGreen transition">Announcements</a>
+        <a href="#about" class="sidebar-link hover:text-brandGreen transition">About Us</a>
+        <a href="#qr-services" class="sidebar-link hover:text-brandGreen transition">QR Services</a>
+        <a href="#vision" class="sidebar-link hover:text-brandGreen transition">Vision</a>
+        <a href="#partners" class="sidebar-link hover:text-brandGreen transition">Partners</a>
+        <a href="#contact" class="sidebar-link hover:text-brandGreen transition">Contact</a>
+    </nav>
+</aside>
 </body>
 </html>
