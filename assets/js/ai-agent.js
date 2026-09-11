@@ -235,7 +235,7 @@ async function getResponse(userQuery) {
         console.error("Fetch Exception:", e);
     }
 
-    return "Sorry, unable to connect to the AI server.";
+    return "Our AI assistant is currently unavailable. Please try again in a few moments. We apologize for the delay!.";
 }
 
 if (sendBtn) sendBtn.addEventListener('click', handleSendMessage);
